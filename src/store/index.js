@@ -84,7 +84,7 @@ export default new Vuex.Store({
         console.log(e);
       }
     },
-    async sendWinner({ commit, dispatch }, winner) {
+    async sendWinner({ dispatch }, winner) {
       try {
         await axios.post('https://starnavi-frontend-test-task.herokuapp.com/winners', {
           winner,
@@ -106,7 +106,7 @@ export default new Vuex.Store({
       setTimeout(() => {
         if (state.fieldsArray.find(item => item === currentField)) {
           dispatch('computerPoints', currentField);
-          if (state.fieldsArray.length > 0 && computer < (state.totalFields / 2) - 1) {
+          if (state.fieldsArray.length > 0 && computer < Math.floor(state.totalFields / 2)) {
             dispatch('gameProcess');
           } else {
             commit('setWinner', 'computer');
@@ -120,7 +120,7 @@ export default new Vuex.Store({
       commit('setUserPoints', field);
       commit('deleteField', field);
       const user = state.userPoints.length;
-      if (state.fieldsArray.length > 0 && user < (state.totalFields / 2)) {
+      if (state.fieldsArray.length > 0 && user < Math.floor(state.totalFields / 2) + 1) {
         dispatch('gameProcess');
       } else {
         commit('setWinner', state.userName);
