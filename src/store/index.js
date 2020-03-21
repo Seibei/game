@@ -84,11 +84,16 @@ export default new Vuex.Store({
         console.log(e);
       }
     },
-    async sendWinner({ commit }, winner) {
-      console.log({
-        winner,
-        date: new Date().toLocaleString(),
-      });
+    async sendWinner({ commit, dispatch }, winner) {
+      try {
+        await axios.post('https://starnavi-frontend-test-task.herokuapp.com/winners', {
+          winner,
+          date: new Date().toLocaleString(),
+        });
+        await dispatch('fetchWinners');
+      } catch (e) {
+        console.log(e);
+      }
     },
     startGame({ commit, dispatch }) {
       dispatch('gameProcess');
