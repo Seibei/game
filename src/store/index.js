@@ -85,15 +85,15 @@ export default new Vuex.Store({
       }
     },
     async sendWinner({ dispatch }, winner) {
-      // try {
-      //   await axios.post('https://starnavi-frontend-test-task.herokuapp.com/winners', {
-      //     winner,
-      //     date: new Date().toLocaleString(),
-      //   });
-      //   await dispatch('fetchWinners');
-      // } catch (e) {
-      //   console.log(e);
-      // }
+      try {
+        await axios.post('https://starnavi-frontend-test-task.herokuapp.com/winners', {
+          winner,
+          date: new Date().toLocaleString(),
+        });
+        await dispatch('fetchWinners');
+      } catch (e) {
+        console.log(e);
+      }
     },
     startGame({ commit, dispatch }) {
       dispatch('gameProcess');
