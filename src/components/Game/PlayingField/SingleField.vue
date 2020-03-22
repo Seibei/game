@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     singleFieldHandler() {
-      if (this.name !== this.activeField || this.computerColor || this.isUser) return;
+      if (this.name !== this.activeField || this.computerColor || this.userColor) return;
       this.$store.dispatch('userPoints', this.name);
     },
   },
