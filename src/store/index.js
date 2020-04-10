@@ -40,8 +40,7 @@ export default new Vuex.Store({
     },
     createFieldsArray(state, value) {
       const end = value * value;
-      const length = end - 0;
-      state.fieldsArray = Array.from({ length }, (_, i) => 0 + i + 1);
+      state.fieldsArray = Array.from({ length: end }, (_, i) => i + 1);
       state.fieldsArraySnapshot = [...state.fieldsArray];
       state.totalFields = value * value;
     },
